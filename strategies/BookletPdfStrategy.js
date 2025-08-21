@@ -5,7 +5,7 @@ import { resizeImage } from "../utils/resizeImage.js";
 export default class SinglePagePdfStrategy {
     static label = "Książeczka (impozycja) - drukuj dwustronnie - krótka krawędź";
     static name = "booklet";
-    static description = "Tworzy pdf, który, nalezy wydrukowac dwustronnie (dublex) - automatyczny obrót wzdłóz krótkiej krawędzi";
+    static description = "<h1>Potęga!</h1><p>Tworzy pdf, który, nalezy wydrukowac dwustronnie (dublex) - automatyczny obrót wzdłóz krótkiej krawędzi</p>";
 
     constructor(dpiScale, jpgQuality) {
         this.dpiScale = dpiScale;
@@ -16,8 +16,6 @@ export default class SinglePagePdfStrategy {
         const pdf = new window.jspdf.jsPDF({ orientation: "landscape" });
         const pageWidth = pdf.internal.pageSize.getWidth();
         const pageHeight = pdf.internal.pageSize.getHeight();
-        const dpiScale = parseFloat(this.dpiScale.value) || 2;
-        const jpgQuality = parseFloat(this.jpgQuality.value) || 0.9;
 
         // Jeśli liczba plików nieparzysta, dodaj pusty plik, by uzyskać parzystą liczbę stron
         const totalImages = files.length % 2 === 0 ? files.length : files.length + 1;
@@ -28,8 +26,8 @@ export default class SinglePagePdfStrategy {
             imgData = await resizeImage(imgData,
                 pdf.internal.pageSize.getWidth(),
                 pdf.internal.pageSize.getHeight(),
-                dpiScale,
-                jpgQuality
+                this.dpiScale,
+                this.jpgQuality
             );
             const size = await this.getImageSize(imgData);
             return { imgData, size };

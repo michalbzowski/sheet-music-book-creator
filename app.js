@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const fileListEl = document.getElementById("file-list");
     const createBtn = document.getElementById("create-booklet-btn");
     const strategySelect = document.getElementById("strategy-select");
+    const descriptionButton = document.getElementById("description-button");
 
     const filenameInput = document.getElementById("filename");
 
@@ -24,10 +25,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             li.textContent = file.name;
             li.dataset.index = index;
 
-            li.addEventListener("dragstart", onDragStart);
-            li.addEventListener("dragover", onDragOver);
-            li.addEventListener("drop", onDrop);
-            li.addEventListener("dragend", onDragEnd);
+            // li.addEventListener("dragstart", onDragStart);
+            // li.addEventListener("dragover", onDragOver);
+            // li.addEventListener("drop", onDrop);
+            // li.addEventListener("dragend", onDragEnd);
 
             fileListEl.appendChild(li);
         });
@@ -93,6 +94,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         opt.textContent = StratClass.label;
         opt.title = StratClass.description; // opcjonalnie tooltip
         strategySelect.appendChild(opt);
+    });
+
+    strategySelect.addEventListener("change", async () => {
+        const selectedName = strategySelect.value;
+        const SelectedStrategy = strategies.find(s => s.name === selectedName);
+        document.getElementById("strategy-desctiption").innerHTML = SelectedStrategy.description;
+        console.log(SelectedStrategy.description);
+    });
+
+    descriptionButton.addEventListener("click", async () => {
+        const selectedName = strategySelect.value;
+        const SelectedStrategy = strategies.find(s => s.name === selectedName);
+        document.getElementById("strategy-desctiption").innerHTML = SelectedStrategy.description;
+        console.log(SelectedStrategy.description);
     });
 
     // Dalej podłącz pozostały kod do obsługi wyboru strategii itd...
