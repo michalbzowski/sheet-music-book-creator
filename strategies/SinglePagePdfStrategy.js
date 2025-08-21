@@ -4,7 +4,14 @@ import { resizeImage } from "../utils/resizeImage.js";
 export default class SinglePagePdfStrategy {
     static label = "Jeden obrazek na stronę";
     static name = "single";
-    static description = "Prosta strategia, jeden obrazek na stronę PDF.";
+    static description = `
+        <p>
+                Ten układ to poprostu jeden wczytany obrazek na jednej stronie.
+        </p>
+        <p>
+                Po kolei, pierwszy obrazek będzie na pierwszej stronie. Drugi na drugiej itp.
+        </p>
+    `;
 
     constructor(dpiScale, jpgQuality) {
         this.dpiScale = dpiScale;

@@ -5,7 +5,21 @@ import { resizeImage } from "../utils/resizeImage.js";
 export default class SinglePagePdfStrategy {
     static label = "Książeczka (impozycja) - drukuj dwustronnie - krótka krawędź";
     static name = "booklet";
-    static description = "<h1>Potęga!</h1><p>Tworzy pdf, który, nalezy wydrukowac dwustronnie (dublex) - automatyczny obrót wzdłóz krótkiej krawędzi</p>";
+    static description =`
+        <p>
+            Ten układ to układ ksiązeczki zszytej zszywaczem przez środek.
+        </p>
+        <p>
+            Wczytane obrazki będa ułozone w odpowiedniej kolejności w pliku PDF, który pobierzesz. 
+        </p>
+        <p>
+            Następnie wydrukuj go wybierając druk dwustronny z obrotem wokół krótkiej krawędzi.
+        </p>
+        <p>
+            Po wydruku, zegnij wszystkie strony w pół, aby wyznaczyć środek i zszyj go zszywaczem. 
+        </p>
+
+    `
 
     constructor(dpiScale, jpgQuality) {
         this.dpiScale = dpiScale;

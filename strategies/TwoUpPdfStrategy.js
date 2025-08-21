@@ -4,7 +4,15 @@ import { resizeImage } from "../utils/resizeImage.js";
 export default class TwoUpPdfStrategy {
     static label = "Dwa obrazki na stronę";
     static name = "two-up";
-    static description = "Prosta strategia, dwa obrazki na stronę PDF.";
+    static description = `
+                <p>
+                    Ten układ to poprostu dwa wczytane orazki na jednej stronie.
+                </p>
+        <p>
+                Po kolei, pierwszy i drugi wczytany obrazek będzie na pierwszej stronie. 
+                Drugi i trzeci na drugiej itp.
+        </p>
+    `;
 
     constructor(dpiScale, jpgQuality) {
         this.dpiScale = dpiScale;
@@ -45,7 +53,7 @@ export default class TwoUpPdfStrategy {
 
             // jeśli jest drugi obrazek parzysty
             if (i + 1 < files.length) {
-                let imgData2 = await this.readFileAsDataURL(files[i]);
+                let imgData2 = await this.readFileAsDataURL(files[i + 1]);
                 imgData2 = await resizeImage(
                     imgData2,
                     pdf.internal.pageSize.getWidth(),

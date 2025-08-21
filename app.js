@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //Wczytywanie strategii
     // Lista plików w katalogu strategies
-     let strategyFiles = [];
+    let strategyFiles = [];
 
     await fetch('/public/strategies.json')
         .then(res => res.json())
@@ -96,17 +96,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         strategySelect.appendChild(opt);
     });
 
-    strategySelect.addEventListener("change", async () => {
-        const selectedName = strategySelect.value;
-        const SelectedStrategy = strategies.find(s => s.name === selectedName);
-        document.getElementById("strategy-desctiption").innerHTML = SelectedStrategy.description;
-        console.log(SelectedStrategy.description);
-    });
+    // strategySelect.addEventListener("change", async () => {
+    //     const selectedName = strategySelect.value;
+    //     const SelectedStrategy = strategies.find(s => s.name === selectedName);
+    //     document.getElementById("strategy-desctiption").innerHTML = SelectedStrategy.description;
+    //     document.getElementById("strategy-desctiption-label").innerHTML = SelectedStrategy.label;
+    //     console.log(SelectedStrategy.description);
+    // });
 
     descriptionButton.addEventListener("click", async () => {
         const selectedName = strategySelect.value;
         const SelectedStrategy = strategies.find(s => s.name === selectedName);
         document.getElementById("strategy-desctiption").innerHTML = SelectedStrategy.description;
+        document.getElementById("strategy-desctiption-label").innerHTML = SelectedStrategy.label;
         console.log(SelectedStrategy.description);
     });
 
