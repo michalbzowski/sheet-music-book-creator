@@ -1,5 +1,7 @@
 [
   "./strategies/BookletPdfStrategy.js",
   "./strategies/SinglePagePdfStrategy.js",
+  "./strategies/TwoUpPdfStrategy copy 2.js",
+  "./strategies/TwoUpPdfStrategy copy.js",
   "./strategies/TwoUpPdfStrategy.js"
 ]
