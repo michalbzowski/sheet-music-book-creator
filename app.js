@@ -35,40 +35,48 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let dragSrcEl = null;
 
-    function onDragStart(e) {
-        dragSrcEl = this;
-        this.classList.add("dragging");
-        e.dataTransfer.effectAllowed = "move";
-    }
+    // function onDragStart(e) {
+    //     dragSrcEl = this;
+    //     this.classList.add("dragging");
+    //     e.dataTransfer.effectAllowed = "move";
+    // }
 
-    function onDragOver(e) {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = "move";
-        return false;
-    }
+    // function onDragOver(e) {
+    //     e.preventDefault();
+    //     e.dataTransfer.dropEffect = "move";
+    //     return false;
+    // }
 
-    function onDrop(e) {
-        e.stopPropagation();
-        if (dragSrcEl !== this) {
-            const srcIndex = Number(dragSrcEl.dataset.index);
-            const targetIndex = Number(this.dataset.index);
-            files.splice(targetIndex, 0, files.splice(srcIndex, 1)[0]);
-            renderFileList();
-        }
-        return false;
-    }
+    // function onDrop(e) {
+    //     e.stopPropagation();
+    //     if (dragSrcEl !== this) {
+    //         const srcIndex = Number(dragSrcEl.dataset.index);
+    //         const targetIndex = Number(this.dataset.index);
+    //         files.splice(targetIndex, 0, files.splice(srcIndex, 1)[0]);
+    //         renderFileList();
+    //     }
+    //     return false;
+    // }
 
-    function onDragEnd() {
-        this.classList.remove("dragging");
-    }
+    // function onDragEnd() {
+    //     this.classList.remove("dragging");
+    // }
 
     //Wczytywanie strategii
-    // Lista plików w katalogu strategies (ręcznie definiujemy listę nazw plików lub generujemy ją jeśli backend jest dostępny)
-    const strategyFiles = [
-        "./strategies/SinglePagePdfStrategy.js",
-        "./strategies/TwoUpPdfStrategy.js",
-        "./strategies/BookletPdfStrategy.js",
-    ];
+    // Lista plików w katalogu strategies
+     let strategyFiles = [];
+
+    await fetch('/public/strategies.json')
+        .then(res => res.json())
+        .then(filesList => {
+            // dynamiczne generowanie wyboru strategii
+            filesList.forEach((fileName) => {
+                // np. import lub dynamiczne tworzenie opcji w select na podstawie tego pliku
+                console.log(fileName);
+                strategyFiles.push(fileName)
+            });
+        });
+
 
     // Załaduj moduły strategii
     const strategies = [];
